@@ -15,9 +15,9 @@ jobs:
       - name: Build Docker
         run: |
           cd infrastructure
-          docker-compose build
-          docker-compose up -d web
-          docker-compose ps
+          make build
+          make up
+          make ps
       - name: Create Phalcon Project
         run: |
           cd infrastructure
