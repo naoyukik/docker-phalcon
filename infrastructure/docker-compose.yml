@@ -9,6 +9,12 @@ services:
       - php-fpm-socket:/var/run/php-fpm
       - ../backend:/work/backend
       - /work/backend/vendor
+    environment:
+      - XDEBUG_REMOTE_ENABLE=1
+      - XDEBUG_REMOTE_AUTO_START=1
+      - XDEBUG_REMOTE_HOST=host.docker.internal
+      - XDEBUG_REMOTE_PORT=9010
+      - XDEBUG_IDEKEY=PHPSTORM
 
   web:
     build: ./docker/nginx

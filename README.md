@@ -1,18 +1,13 @@
-# docker-laravel
+# docker-phalcon
 
-![License](https://img.shields.io/github/license/ucan-lab/docker-laravel?color=f05340)
-![Stars](https://img.shields.io/github/stars/ucan-lab/docker-laravel?color=f05340)
-![Issues](https://img.shields.io/github/issues/ucan-lab/docker-laravel?color=f05340)
-![Forks](https://img.shields.io/github/forks/ucan-lab/docker-laravel?color=f05340)
+![License](https://img.shields.io/github/license/naoyukik/docker-phalcon?color=8fc19a)
+![Stars](https://img.shields.io/github/stars/naoyukik/docker-phalcon?color=8fc19a)
+![Issues](https://img.shields.io/github/issues/naoyukik/docker-phalcon?color=8fc19a)
+![Forks](https://img.shields.io/github/forks/naoyukik/docker-phalcon?color=8fc19a)
 
 ## Introduction
 
-Build laravel development environment with docker-compose.
-
-## Usage
-
-- [Build for Mac](https://github.com/ucan-lab/docker-laravel/wiki/Build-for-Mac)
-- [Build for Windows](https://github.com/ucan-lab/docker-laravel/wiki/Build-for-Windows)
+Build Phalcon development environment with docker-compose.
 
 ## Container structure
 
@@ -38,3 +33,7 @@ Build laravel development environment with docker-compose.
 
 - Base image
   - [mysql](https://hub.docker.com/_/mysql):8.0
+
+# Authors
+- [ucan-lab/docker-laravel](https://github.com/ucan-lab/docker-laravel)
+- [phalcon/dockerfiles](https://github.com/phalcon/dockerfiles)

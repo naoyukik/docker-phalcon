@@ -2,13 +2,15 @@ up:
 	docker-compose up -d
 build:
 	docker-compose build --no-cache --force-rm
+require-packages:
+	docker-compose exec app composer global require phalcon/devtools
 create-project:
 	@make build
 	@make up
-	docker-compose exec app vendor/bin/phalcon project template --directory=/tmp --enable-webtools
+	@make require-packages
+	docker-compose exec app /composer/vendor/bin/phalcon project template --directory=/tmp --enable-webtools
 	docker-compose exec app sh -c 'cp -afb /tmp/template/* ./'
 install-recommend-packages:
-	docker-compose exec app composer require --dev phalcon/devtools
 	docker-compose exec app composer require --dev phalcon/ide-stubs
 	docker-compose exec app composer require --dev josegonzalez/dotenv:dev-master
 	docker-compose exec app composer require --dev roave/security-advisories:dev-master
@@ -41,7 +43,7 @@ web:
 app:
 	docker-compose exec app bash
 migrate:
-	docker-compose exec app ./vendor/bin/phalcon-migrations run
+	docker-compose exec app /composer/vendor/bin/phalcon-migrations run
 fresh:
 seed:
 rollback-test:
@@ -53,6 +55,9 @@ cache:
 	@make optimize
 cache-clear:
 	@make optimize-clear
+development-tools-app:
+	docker-compose exec app apt update
+	docker-compose exec app apt install -y vim
 npm:
 	@make npm-install
 npm-install:
