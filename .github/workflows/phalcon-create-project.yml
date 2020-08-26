@@ -12,24 +12,19 @@ jobs:
       - uses: actions/checkout@v2
       - name: Docker Compose Version
         run: docker-compose --version
-      - name: Build Docker
-        run: |
-          cd infrastructure
-          make build
-          make up
-          make ps
       - name: Create Phalcon Project
         run: |
           cd infrastructure
-          docker-compose exec -T app php --version
-          docker-compose exec -T app composer --version
-          docker-compose exec -T app composer require --dev phalcon/devtools
-          docker-compose exec -T app vendor/bin/phalcon project template --directory=/tmp --enable-webtools
-          docker-compose exec -T app sh -c 'cp -afb /tmp/template/* ./'
+          make create-project
+          make ps
+      - name: Recommend packages install
+        run: |
+          cd infrastructure
+          make install-recommend-packages
       - name: PHP and phalcon Version
         run: |
           cd infrastructure
-          docker-compose exec -T app ./vendor/bin/phalcon info
+          make info
 #      - name: Laravel Migrate, Rollback, Seeding Testing
 #        run: |
 #          cd infrastructure

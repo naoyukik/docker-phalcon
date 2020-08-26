@@ -4,6 +4,7 @@ build:
 	docker-compose build --no-cache --force-rm
 require-packages:
 	docker-compose exec app composer global require phalcon/devtools
+	@make info
 create-project:
 	@make build
 	@make up
@@ -44,6 +45,8 @@ app:
 	docker-compose exec app bash
 migrate:
 	docker-compose exec app /composer/vendor/bin/phalcon-migrations run
+info:
+	docker-compose exec app /composer/vendor/bin/phalcon info
 fresh:
 seed:
 rollback-test:
