@@ -9,16 +9,16 @@ create-project:
 	@make build
 	@make up
 	@make require-packages
-	docker-compose exec app /composer/vendor/bin/phalcon project template --directory=/tmp --enable-webtools
-	docker-compose exec app sh -c 'cp -afb /tmp/template/* ./'
+	docker-compose exec -T app /composer/vendor/bin/phalcon project template --directory=/tmp --enable-webtools
+	docker-compose exec -T app sh -c 'cp -afb /tmp/template/* ./'
 install-recommend-packages:
 	docker-compose exec -T app composer require --dev phalcon/ide-stubs
 	docker-compose exec -T app composer require --dev josegonzalez/dotenv:dev-master
 	docker-compose exec -T app composer require --dev roave/security-advisories:dev-master
 init:
 	docker-compose up -d --build
-	docker-compose -T exec app composer install
-	docker-compose exec app cp .env.example .env
+	docker-compose exec -T app composer install
+	docker-compose exec -T app cp .env.example .env
 remake:
 	@make destroy
 	@make init
