@@ -46,7 +46,7 @@ app:
 migrate:
 	docker-compose exec app /composer/vendor/bin/phalcon-migrations run
 info:
-	docker-compose exec app /composer/vendor/bin/phalcon info
+	docker-compose exec -T app /composer/vendor/bin/phalcon info
 fresh:
 seed:
 rollback-test:
