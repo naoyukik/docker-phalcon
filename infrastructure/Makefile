@@ -2,26 +2,23 @@ up:
 	docker-compose up -d
 build:
 	docker-compose build --no-cache --force-rm
+require-packages:
+	docker-compose exec -T app composer global require phalcon/devtools
+	@make info
 create-project:
 	@make build
 	@make up
-	docker-compose exec app composer create-project --prefer-dist laravel/laravel .
-	docker-compose exec app chmod -R 777 storage bootstrap/cache
+	@make require-packages
+	docker-compose exec -T app /composer/vendor/bin/phalcon project template --directory=/tmp --enable-webtools
+	docker-compose exec -T app sh -c 'cp -afb /tmp/template/* ./'
 install-recommend-packages:
-	docker-compose exec app composer require doctrine/dbal
-	docker-compose exec app composer require --dev barryvdh/laravel-ide-helper
-	docker-compose exec app composer require --dev beyondcode/laravel-dump-server
-	docker-compose exec app composer require --dev barryvdh/laravel-debugbar
-	docker-compose exec app composer require --dev roave/security-advisories:dev-master
-	docker-compose exec app php artisan vendor:publish --provider="BeyondCode\DumpServer\DumpServerServiceProvider"
-	docker-compose exec app php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+	docker-compose exec -T app composer require --dev phalcon/ide-stubs
+	docker-compose exec -T app composer require --dev josegonzalez/dotenv:dev-master
+	docker-compose exec -T app composer require --dev roave/security-advisories:dev-master
 init:
 	docker-compose up -d --build
-	docker-compose exec app composer install
-	docker-compose exec app cp .env.example .env
-	docker-compose exec app php artisan key:generate
-	docker-compose exec app php artisan storage:link
-	docker-compose exec app php artisan migrate:fresh --seed
+	docker-compose exec -T app composer install
+	docker-compose exec -T app cp .env.example .env
 remake:
 	@make destroy
 	@make init
@@ -47,27 +44,23 @@ web:
 app:
 	docker-compose exec app bash
 migrate:
-	docker-compose exec app php artisan migrate
+	docker-compose exec app /composer/vendor/bin/phalcon-migrations run
+info:
+	docker-compose exec -T app /composer/vendor/bin/phalcon info
 fresh:
-	docker-compose exec app php artisan migrate:fresh --seed
 seed:
-	docker-compose exec app php artisan db:seed
 rollback-test:
-	docker-compose exec app php artisan migrate:fresh
-	docker-compose exec app php artisan migrate:refresh
-tinker:
-	docker-compose exec app php artisan tinker
 test:
-	docker-compose exec app php artisan test
 optimize:
-	docker-compose exec app php artisan optimize
 optimize-clear:
-	docker-compose exec app php artisan optimize:clear
 cache:
 	docker-compose exec app composer dump-autoload -o
 	@make optimize
 cache-clear:
 	@make optimize-clear
+development-tools-app:
+	docker-compose exec app apt update
+	docker-compose exec app apt install -y vim
 npm:
 	@make npm-install
 npm-install:
@@ -98,8 +91,3 @@ sql:
 	docker-compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
 redis:
 	docker-compose exec redis redis-cli
-ide-helper:
-	docker-compose exec app php artisan clear-compiled
-	docker-compose exec app php artisan ide-helper:generate
-	docker-compose exec app php artisan ide-helper:meta
-	docker-compose exec app php artisan ide-helper:models --nowrite

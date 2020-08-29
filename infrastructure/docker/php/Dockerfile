@@ -10,11 +10,11 @@ ENV TZ=UTC \
   # composer environment
   COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer \
-  # Laravel environment
+  # Phalcon environment
   DB_CONNECTION=mysql \
   DB_HOST=db \
   DB_PORT=3306 \
-  DB_DATABASE=laravel_local \
+  DB_DATABASE=phalcon_local \
   DB_USERNAME=phper \
   DB_PASSWORD=secret \
   LOG_CHANNEL=stderr
@@ -22,18 +22,38 @@ ENV TZ=UTC \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
-  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales && \
+  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales libcurl4-openssl-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8 && \
   localedef -f UTF-8 -i en_US en_US.UTF-8 && \
   mkdir /var/run/php-fpm && \
-  docker-php-ext-install intl pdo_mysql mbstring zip bcmath && \
-  composer config -g process-timeout 3600 && \
-  composer config -g repos.packagist composer https://packagist.org && \
+  docker-php-ext-install curl fileinfo gettext intl json pdo_mysql mbstring zip bcmath
+RUN composer config -g process-timeout 3600 && \
+  composer config -g repos.packagist composer https://packagist.jp && \
   composer global require hirak/prestissimo
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini
 
+# install phalcon
+RUN pecl install phalcon xdebug
+RUN echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini && \
+  echo "extension=psr.so" > /usr/local/etc/php/conf.d/psr.ini
+RUN echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.remote_autostart=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.default_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.coverage_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.profiler_output_dir=\"/tmp\"" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+COPY ./entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.d /entrypoint.d
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["php-fpm"]
+
 WORKDIR /work/backend
+
