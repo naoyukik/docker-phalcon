@@ -56,4 +56,3 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm"]
 
 WORKDIR /work/backend
-

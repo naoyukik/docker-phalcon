@@ -53,6 +53,7 @@ rollback-test:
 test:
 optimize:
 optimize-clear:
+	docker-compose exec app rm -rf ./cache/*
 cache:
 	docker-compose exec app composer dump-autoload -o
 	@make optimize

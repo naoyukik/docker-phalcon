@@ -148,11 +148,6 @@
       </interpreter>
     </phpInfoCache>
   </component>
-  <component name="PhpProjectServersManager">
-    <servers>
-      <server host="localhost" id="31fd15d4-1d81-47b7-b15b-2072e41e49a6" name="localhost" use_path_mappings="true" />
-    </servers>
-  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
   <component name="PhpRuntimeConfiguration">
     <extensions>
