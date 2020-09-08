@@ -9,6 +9,7 @@ services:
       - php-fpm-socket:/var/run/php-fpm
       - ../backend:/work/backend
       - /work/backend/vendor
+      - ../stub:/work/stub
     environment:
       - XDEBUG_REMOTE_ENABLE=0
       - XDEBUG_REMOTE_AUTO_START=1

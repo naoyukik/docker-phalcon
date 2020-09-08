@@ -50,6 +50,8 @@ RUN echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini && \
   echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
   echo "xdebug.profiler_output_dir=\"/tmp\"" >> /usr/local/etc/php/conf.d/xdebug.ini
 
+RUN composer global require phalcon/devtools
+
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./entrypoint.d /entrypoint.d
 ENTRYPOINT ["/entrypoint.sh"]

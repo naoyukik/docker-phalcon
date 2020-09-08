@@ -16,6 +16,11 @@
       <phpcs_by_interpreter interpreter_id="4ffc1430-7b97-4f7d-856e-5318179db38b" tool_path="phpcs" timeout="30000" />
     </phpcs_settings>
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/stub" />
+    </include_path>
+  </component>
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter id="4ffc1430-7b97-4f7d-856e-5318179db38b" name="app" home="docker-compose://DATA" debugger_id="php.debugger.XDebug" debugger_extension="xdebug.so">
@@ -98,7 +103,7 @@
         </phpinfo>
       </interpreter>
       <interpreter name="qa">
-        <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.4.9">
+        <phpinfo binary_type="PHP" php_cgi="/usr/local/bin/php-cgi" php_cli="/usr/local/bin/php" path_separator=":" version="7.4.9">
           <additional_php_ini>/usr/local/etc/php/conf.d/docker-php-ext-ast.ini, /usr/local/etc/php/conf.d/docker-php-ext-pcntl.ini, /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini, /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini, /usr/local/etc/php/conf.d/docker-php-ext-zip.ini</additional_php_ini>
           <configuration_file>/usr/local/etc/php/php.ini</configuration_file>
           <configuration_options>
@@ -244,5 +249,10 @@
       <extension name="zend" enabled="false" />
       <extension name="zmq" enabled="false" />
     </extensions>
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <phpunit_by_interpreter interpreter_id="4ffc1430-7b97-4f7d-856e-5318179db38b" custom_loader_path="/work/backend/vendor/autoload.php" phpunit_phar_path="" />
+    </phpunit_settings>
   </component>
 </project>

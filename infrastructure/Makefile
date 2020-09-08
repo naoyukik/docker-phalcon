@@ -2,23 +2,23 @@ up:
 	docker-compose up -d
 build:
 	docker-compose build --no-cache --force-rm
-require-packages:
-	docker-compose exec -T app composer global require phalcon/devtools
-	@make info
 create-project:
 	@make build
 	@make up
-	@make require-packages
 	docker-compose exec -T app /composer/vendor/bin/phalcon project template --directory=/tmp --enable-webtools
 	docker-compose exec -T app sh -c 'cp -afb /tmp/template/* ./'
 install-recommend-packages:
 	docker-compose exec -T app composer require --dev phalcon/ide-stubs
 	docker-compose exec -T app composer require --dev josegonzalez/dotenv:dev-master
 	docker-compose exec -T app composer require --dev roave/security-advisories:dev-master
+	docker-compose exec -T app composer require --dev phpunit/phpunit:^9.0
+	docker-compose exec -T app cp -rf /work/backend/vendor /work/stub/
 init:
 	docker-compose up -d --build
 	docker-compose exec -T app composer install
 	docker-compose exec -T app cp .env.example .env
+	docker-compose exec -T app rm -rf /work/stub/vendor
+	docker-compose exec -T app cp -rf /work/backend/vendor /work/stub/
 remake:
 	@make destroy
 	@make init

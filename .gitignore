@@ -72,3 +72,4 @@ fabric.properties
 
 # Plugin Settings
 /.idea/CodicPluginSettings.xml
+/stub/
