@@ -29,8 +29,7 @@ RUN apt-get update && \
   localedef -f UTF-8 -i en_US en_US.UTF-8 && \
   mkdir /var/run/php-fpm && \
   docker-php-ext-install curl fileinfo gettext intl json pdo_mysql mbstring zip bcmath
-RUN composer config -g process-timeout 3600 && \
-  composer config -g repos.packagist composer https://packagist.jp
+RUN composer config -g process-timeout 3600
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini

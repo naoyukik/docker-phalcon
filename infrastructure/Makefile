@@ -27,6 +27,7 @@ restart:
 	@make up
 destroy:
 	docker-compose down --rmi all --volumes
+	docker image rm composer:latest
 destroy-volumes:
 	docker-compose down --volumes
 ps:
