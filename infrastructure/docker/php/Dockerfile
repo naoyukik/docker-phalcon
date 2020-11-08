@@ -46,7 +46,8 @@ RUN echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini && \
   echo "xdebug.default_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
   echo "xdebug.coverage_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
   echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.profiler_output_dir=\"/tmp\"" >> /usr/local/etc/php/conf.d/xdebug.ini
+  echo "xdebug.profiler_output_dir=\"/tmp\"" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN composer global require phalcon/devtools
 
