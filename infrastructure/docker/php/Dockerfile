@@ -39,15 +39,13 @@ RUN pecl install phalcon xdebug
 RUN echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini && \
   echo "extension=psr.so" > /usr/local/etc/php/conf.d/psr.ini
 RUN echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.remote_autostart=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.default_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.coverage_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.profiler_output_dir=\"/tmp\"" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-  echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini
+  echo "xdebug.client_host = host.docker.internal" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.client_port = 9003" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.idekey = PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.mode = debug" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.start_with_request = trigger" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.trigger_value = \"\"" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+  echo "xdebug.output_dir = \"/tmp\"" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN composer global require phalcon/devtools
 

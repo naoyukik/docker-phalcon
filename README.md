@@ -12,9 +12,9 @@ Build Phalcon development environment with docker-compose.
 ## Container structure
 
 ```bash
-|-- app
-|-- web
-|-- db
+├── app
+├── web
+└── db
 ```
 
 ### app container
