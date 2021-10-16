@@ -1,7 +1,4 @@
 version: "3.8"
-volumes:
-  db-store:
-  php-fpm-socket:
 services:
   app:
     build: ./docker/php
@@ -34,3 +31,6 @@ services:
       - db-store:/var/lib/mysql
     ports:
       - 3306:3306
+volumes:
+  db-store:
+  php-fpm-socket:
