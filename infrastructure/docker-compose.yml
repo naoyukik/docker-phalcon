@@ -1,7 +1,10 @@
 version: "3.8"
 services:
   app:
-    build: ./docker/php
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      target: xdebug
     volumes:
       - php-fpm-socket:/var/run/php-fpm
       - ../backend:/work/backend

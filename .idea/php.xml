@@ -5,6 +5,9 @@
       <phpmd_by_interpreter interpreter_id="340c54d6-45b0-48e4-a789-ae27f12aec42" tool_path="/tools/phpmd" timeout="30000" />
     </phpmd_settings>
   </component>
+  <component name="PhpAnalysisConfiguration" call_tree_analysis_depth="0">
+    <unchecked_exceptions />
+  </component>
   <component name="PhpCSFixer">
     <phpcsfixer_settings>
       <phpcs_fixer_by_interpreter interpreter_id="340c54d6-45b0-48e4-a789-ae27f12aec42" standards="PSR1;PSR2;Symfony;DoctrineAnnotation;PHP70Migration;PHP71Migration" tool_path="/tools/php-cs-fixer" timeout="30000" />
@@ -41,14 +44,14 @@
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
       <interpreter name="app">
-        <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.4.8">
+        <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.4.23">
           <additional_php_ini>/usr/local/etc/php/conf.d/docker-php-ext-bcmath.ini, /usr/local/etc/php/conf.d/docker-php-ext-gettext.ini, /usr/local/etc/php/conf.d/docker-php-ext-intl.ini, /usr/local/etc/php/conf.d/docker-php-ext-pdo_mysql.ini, /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini, /usr/local/etc/php/conf.d/docker-php-ext-zip.ini, /usr/local/etc/php/conf.d/phalcon.ini, /usr/local/etc/php/conf.d/psr.ini, /usr/local/etc/php/conf.d/xdebug.ini</additional_php_ini>
           <configuration_file>/usr/local/etc/php/php.ini</configuration_file>
           <configuration_options>
             <configuration_option name="include_path" value=".:/usr/local/lib/php" />
           </configuration_options>
           <debuggers>
-            <debugger_info debugger="xdebug" debugger_version="3.0.0">
+            <debugger_info debugger="xdebug" debugger_version="3.0.4">
               <debug_extensions />
             </debugger_info>
           </debuggers>
@@ -167,6 +170,7 @@
       <extension name="cubrid" enabled="false" />
       <extension name="dba" enabled="false" />
       <extension name="decimal" enabled="false" />
+      <extension name="dio" enabled="false" />
       <extension name="enchant" enabled="false" />
       <extension name="exif" enabled="false" />
       <extension name="fann" enabled="false" />
@@ -215,7 +219,6 @@
       <extension name="pgsql" enabled="false" />
       <extension name="pspell" enabled="false" />
       <extension name="pthreads" enabled="false" />
-      <extension name="radius" enabled="false" />
       <extension name="rar" enabled="false" />
       <extension name="recode" enabled="false" />
       <extension name="redis" enabled="false" />
@@ -238,6 +241,7 @@
       <extension name="win32service" enabled="false" />
       <extension name="wincache" enabled="false" />
       <extension name="xhprof" enabled="false" />
+      <extension name="xlswriter" enabled="false" />
       <extension name="xmlrpc" enabled="false" />
       <extension name="xsl" enabled="false" />
       <extension name="yaml" enabled="false" />

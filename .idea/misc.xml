@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/backend/composer.json" />
-    <file url="file://$PROJECT_DIR$/backend/composer.lock" />
-    <file url="file://$PROJECT_DIR$/backend/index.html" />
     <file url="file://$PROJECT_DIR$/infrastructure/Makefile" />
+  </component>
+  <component name="UnattendedHostPersistenceState">
+    <option name="openedFilesInfos">
+      <list>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="31" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/docker-compose.yml" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="92" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/Makefile" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="444" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/docker/php/Dockerfile" />
+        </OpenedFileInfo>
+      </list>
+    </option>
   </component>
 </project>

@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-buster
+FROM php:7.4-fpm-buster as base_php
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
 # timezone environment
@@ -31,21 +31,27 @@ RUN apt-get update && \
   docker-php-ext-install curl fileinfo gettext intl json pdo_mysql mbstring zip bcmath
 RUN composer config -g process-timeout 3600
 
-COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
-COPY ./php.ini /usr/local/etc/php/php.ini
+COPY docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
+COPY docker/php/php.ini /usr/local/etc/php/php.ini
 
+CMD ["php-fpm"]
+RUN mkdir /entrypoint.d
+COPY docker/php/entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
+WORKDIR /work/backend
+
+FROM base_php as phalcon
 # install phalcon
-RUN pecl install phalcon xdebug
+RUN pecl install phalcon
 RUN echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini && \
-  echo "extension=psr.so" > /usr/local/etc/php/conf.d/psr.ini
-COPY ./conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
-
+    echo "extension=psr.so" > /usr/local/etc/php/conf.d/psr.ini
 
 RUN composer global require phalcon/devtools
 
-COPY ./entrypoint.sh /entrypoint.sh
-COPY ./entrypoint.d /entrypoint.d
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["php-fpm"]
+FROM phalcon as xdebug
+# install xdebug
+RUN pecl install xdebug
+COPY docker/php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
-WORKDIR /work/backend
+COPY docker/php/entrypoint.d/01-xdebug-setup.sh /entrypoint.d/01-xdebug-setup.sh
