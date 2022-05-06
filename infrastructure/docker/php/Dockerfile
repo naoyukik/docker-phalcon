@@ -30,7 +30,7 @@ RUN apt-get update \
   && docker-php-ext-install curl fileinfo gettext intl json pdo_mysql mbstring zip bcmath \
   && composer config -g process-timeout 3600 \
   && mkdir /var/run/php-fpm \
-  && RUN mkdir /entrypoint.d
+  && mkdir /entrypoint.d
 
 COPY docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY docker/php/php.ini /usr/local/etc/php/php.ini
@@ -46,7 +46,7 @@ FROM base_php as phalcon
 RUN pecl install phalcon \
   && echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini \
   && echo "extension=psr.so" > /usr/local/etc/php/conf.d/psr.ini \
-  && RUN composer global require phalcon/devtools
+  && composer global require phalcon/devtools
 
 FROM phalcon as xdebug
 # install xdebug

@@ -3,32 +3,25 @@
   <component name="ProjectPlainTextFileTypeManager">
     <file url="file://$PROJECT_DIR$/infrastructure/Makefile" />
   </component>
-  <component name="SwUserDefinedSpecifications">
-    <option name="specTypeByUrl">
-      <map />
-    </option>
-  </component>
   <component name="UnattendedHostPersistenceState">
     <option name="openedFilesInfos">
       <list>
         <OpenedFileInfo>
-          <option name="caretOffset" value="96" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/docker-compose.yml" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="92" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/Makefile" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
           <option name="caretOffset" value="0" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/.env" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="306" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/docker/php/entrypoint.sh" />
         </OpenedFileInfo>
         <OpenedFileInfo>
-          <option name="caretOffset" value="1109" />
+          <option name="caretOffset" value="915" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/docker/php81p5/Dockerfile" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="fileUrl" value="mock:///DiffPreview" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="fileUrl" value="mock:///DiffPreview" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="1486" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/infrastructure/docker/php/Dockerfile" />
         </OpenedFileInfo>
       </list>
