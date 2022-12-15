@@ -43,13 +43,13 @@ WORKDIR /work/backend
 
 FROM base_php as phalcon
 # install phalcon
-RUN pecl install phalcon \
+RUN pecl install phalcon-4.1.2 \
   && echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini \
   && echo "extension=psr.so" > /usr/local/etc/php/conf.d/psr.ini \
   && composer global require phalcon/devtools
 
 FROM phalcon as xdebug
 # install xdebug
-RUN pecl install xdebug
+RUN pecl install xdebug-3.1.6
 COPY docker/php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY docker/php/entrypoint.d/01-xdebug-setup.sh /entrypoint.d/01-xdebug-setup.sh
