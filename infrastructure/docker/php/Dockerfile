@@ -43,7 +43,7 @@ WORKDIR /work/backend
 
 FROM base_php as phalcon
 # install phalcon
-RUN pecl install phalcon \
+RUN pecl install phalcon-4.1.2 \
   && echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini \
   && echo "extension=psr.so" > /usr/local/etc/php/conf.d/psr.ini \
   && composer global require phalcon/devtools
