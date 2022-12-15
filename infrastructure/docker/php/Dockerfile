@@ -50,6 +50,6 @@ RUN pecl install phalcon-4.1.2 \
 
 FROM phalcon as xdebug
 # install xdebug
-RUN pecl install xdebug
+RUN pecl install xdebug-3.1.6
 COPY docker/php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY docker/php/entrypoint.d/01-xdebug-setup.sh /entrypoint.d/01-xdebug-setup.sh
